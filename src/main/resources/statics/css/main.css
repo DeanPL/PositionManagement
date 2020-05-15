@@ -1,0 +1,145 @@
+html {
+	overflow-x: hidden;
+}
+
+.content-header {
+	position: relative;
+	padding: 0 0 3px 8px
+}
+
+.content-header>.breadcrumb {
+	position: relative;
+	top: 0;
+	right: 0;
+	float: none;
+	margin-top: 0px;
+	padding-left: 10px;
+	background: #ecf0f5;
+}
+
+.main-footer {
+	padding: 7px;
+	color: #444;
+	border-top: 1px solid #eee;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+.grid-btn {
+	margin-bottom: 12px;
+}
+
+.grid-btn .btn {
+	margin-right: 10px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.ml-10 {
+	margin-left: 0 !important;
+}
+
+@media ( min-width : 768px) {
+	.ml-10 {
+		margin-left: 10px !important;
+	}
+	.col-sm-10 {
+		width: 35%;
+		padding-left: 0px;
+	}
+	.col-sm-2 {
+		width: 30%;
+	}
+	.col-sm-3 {
+		width: 27%;
+	}
+	.col-sm-s {
+		width: 40%;
+	}
+	.col-sm-a {
+		width: 5%;
+		float: left;
+	}
+	.col-sm-4 {
+		width: 15%;
+		float: left;
+	}
+	.col-sm-10-r {
+		width: 35%;
+		padding-left: 0px;
+	}
+	.col-sm-2-r {
+		width: 15%;
+	}
+}
+
+tbody>tr>th {
+	font-weight: normal;
+}
+
+.panel .table {
+	margin: 0 0;
+}
+
+.panel .pagination {
+	margin: 0;
+}
+
+.panel-default>.panel-heading {
+	background-color: #f5f5f5;
+}
+
+.row {
+	border-top: 1px solid #ddd;
+	margin: 0;
+	padding: 20px 2px 0px 2px;
+}
+
+.col-xs-6 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.form-horizontal .form-group {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.form-horizontal {
+	width: 80%;
+	padding-top: 20px;
+}
+
+.login-logo img {
+	width: 86px;
+	height: 89px;
+}
+
+.img-logo {
+	width: 39px;
+	height: 38px;
+}
+
+.center {
+	bottom: 50%;
+}
+.col-md-float{
+	float:left;
+	width:33%;
+}
+textarea.synonym-dic{
+	height: 450px;
+}
+.ui-jqgrid{
+	margin-bottom: 10px;
+}
+.ui-jqgrid .ui-jqgrid-titlebar{
+	font-weight: bolder;
+}
+.table{
+	margin-bottom: 0px;
+}

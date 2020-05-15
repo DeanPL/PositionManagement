@@ -1,0 +1,26 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  servlet:
+    context-path: /PM
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  freemarker:
+    suffix: .html
+    request-context-attribute: request
+logging:
+  level: debug
+  level.com.infosys.demo: debug
+  path: logs/
+  file: admin.log
