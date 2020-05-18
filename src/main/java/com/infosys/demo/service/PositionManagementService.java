@@ -10,6 +10,8 @@ public interface PositionManagementService {
     public void operationTransaction(Transaction t);
     public void operationPosition(Position p);
 
+    public Transaction queryTransaction(Integer transactionID);
+    
     public List<Transaction> queryTransactions();
     public List<Position> queryPositions();
 

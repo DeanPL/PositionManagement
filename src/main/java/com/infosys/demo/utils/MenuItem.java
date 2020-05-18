@@ -5,13 +5,10 @@ package com.infosys.demo.utils;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * 菜单管理
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年9月18日 上午9:26:39
- */
+/** 
+*
+*author： Dean Peng email：dean.peng@infosys.com Date:May 16, 2020 4:01:02 PM
+*/
 public class MenuItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 

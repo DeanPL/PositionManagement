@@ -3,7 +3,7 @@ $(function () {
         url: baseURL + 'PM/positions/list',
         datatype: "json",
         colModel: [			
-			{ label: 'ID', name: 'id', width: 30, key: true },
+			//{ label: 'ID', name: 'id', width: 30, key: true },
 			{ label: 'securityCode', name: 'securityCode', sortable: false, width: 60 },
 			{ label: 'quantity', name: 'quantity', width: 100 }
         ],
@@ -69,7 +69,6 @@ var vm = new Vue({
         },
 		reload: function (event) {
 			vm.showList = true;
-			var page = $("#jqGrid").jqGrid('getGridParam','page');
 			$("#jqGrid").jqGrid('setGridParam',{
             }).trigger("reloadGrid");
 		}

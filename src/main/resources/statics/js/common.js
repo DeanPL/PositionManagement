@@ -120,3 +120,11 @@ String.prototype.endWith = function(endStr) {
 String.prototype.startsWith = function(str) {
 	return this.slice(0, str.length) == str;
 }
+
+function check_num(event){
+	var value = event.target.value;
+    if (!/^\+?[1-9][0-9]*$/.test(value)) {
+          alert('only numeric allowed ！');
+          event.target.value = '';
+    }
+}

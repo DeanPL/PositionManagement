@@ -1,25 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>系统日志</title>
+<title>Transactions</title> 
 <#include "/header.html">
 </head>
 <body>
-<div id="rrapp" v-cloak>
-	<div>
-		<div class="grid-btn">
-			<div class="form-group col-sm-2">
-				<input type="text" class="form-control" v-model="q.key" @keyup.enter="query" placeholder="用户名、用户操作">
+	<div id="rrapp" v-cloak>
+		<div v-show="showList">
+			<div>
+				<div class="grid-btn">
+					<a class="btn btn-default" @click="query">Refresh</a> <a
+						class="btn btn-primary" @click="modify"><i
+						class="fa fa-arrow-circle-down"></i>&nbsp;Modify</a>
+				</div>
+				<table id="jqGrid"></table>
 			</div>
-			<a class="btn btn-default" @click="query">查询</a>
 		</div>
-	    <table id="jqGrid"></table>
-		<!--
-	    <div id="jqGridPager"></div>-->
-    </div>
-    
-</div>
+		<div v-show="!showList" class="panel panel-default">
+			<div class="panel-heading">{{title}}</div>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-2 control-label">TransactionID</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							v-model="transaction.transactionID" placeholder="TransactionID" disabled="true"/>
+					</div>
+				</div>
 
-<script src="${request.contextPath}/statics/js/modules/transactions.js?_${.now?long}"></script>
+				<div class="form-group">
+					<div class="col-sm-2 control-label">TradeID</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							v-model="transaction.tradeID" placeholder="TradeID" disabled="true"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-2 control-label">Version</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							v-model="transaction.version" placeholder="Version" disabled="true"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 control-label">SecurityCode</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							v-model="transaction.securityCode" placeholder="SecurityCode" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 control-label">Quantity</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							v-model="transaction.quantity" placeholder="Quantity should be Numeric !" v-on:keyup="check_num($event)"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-2 control-label">Update/Cancel</div>
+					<label class="radio-inline"> <input type="radio" name="insert_update_cancel" value="UPDATE" v-model="transaction.insert_update_cancel"  />Update </label> 
+					<label class="radio-inline"> <input type="radio" name="insert_update_cancel" value="CANCEL" v-model="transaction.insert_update_cancel" /> Cancel</label>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 control-label">Buy/Sell</div>
+					<label class="radio-inline"> <input type="radio" name="buy_sell" value="Buy" v-model="transaction.buy_sell" />Buy </label> 
+					<label class="radio-inline"> <input type="radio" name="buy_sell" value="Sell" v-model="transaction.buy_sell" /> Sell</label>
+				</div>
+
+				<div class="form-group">
+					<input type="hidden" class="form-control"
+						v-model="transaction.buyOrSell" value={{title}} />
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2 control-label"></div>
+					<input type="button" class="btn btn-primary" @click="saveOrUpdate"
+						value="Confirm" /> &nbsp;&nbsp;<input type="button"
+						class="btn btn-warning" @click="reload" value="Back" />
+				</div>
+			</form>
+		</div>
+
+
+
+	</div>
+
+	<script
+		src="${request.contextPath}/statics/js/modules/transactions.js?_${.now?long}"></script>
 </body>
 </html>

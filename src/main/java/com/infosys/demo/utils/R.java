@@ -4,12 +4,9 @@ package com.infosys.demo.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/** 
  * 返回数据
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年10月27日 下午9:59:27
+ *author： Dean Peng email：dean.peng@infosys.com Date:May 16, 2020 4:07:02 PM
  */
 public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;

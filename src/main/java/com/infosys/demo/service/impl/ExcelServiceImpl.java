@@ -1,20 +1,32 @@
 package com.infosys.demo.service.impl;
 
-import com.infosys.demo.entity.Position;
-import com.infosys.demo.entity.Transaction;
-import com.infosys.demo.service.ExcelService;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
-import java.io.*;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.infosys.demo.entity.Position;
+import com.infosys.demo.entity.Transaction;
+import com.infosys.demo.service.ExcelService;
 
 @Service("excelService")
 public class ExcelServiceImpl implements ExcelService {
@@ -26,7 +38,8 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
             in = new FileInputStream(excelFile);
             //读取excel模板
             wb = new XSSFWorkbook(in);
@@ -83,7 +96,9 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
+            
             in = new FileInputStream(excelFile);
             //读取excel模板
             wb = new XSSFWorkbook(in);
@@ -137,7 +152,8 @@ public class ExcelServiceImpl implements ExcelService {
         InputStream in = null;
         OutputStream out = null;
         try {
-            File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
             in = new FileInputStream(excelFile);
             wb = new XSSFWorkbook(in);
             Sheet sheet = wb.getSheetAt(0);
@@ -171,7 +187,8 @@ public class ExcelServiceImpl implements ExcelService {
                 cell.setCellValue(t.getBuy_sell());
             }
             out = new FileOutputStream(excelFile);
-            wb.write(out);
+            sheet.getWorkbook().write(out);
+            //wb.write(out);
             out.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -196,6 +213,51 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void updatePositionSheet(List<Position> positions) {
+        Workbook wb = null;
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
+            in = new FileInputStream(excelFile);
+            wb = new XSSFWorkbook(in);
+            Sheet sheet = wb.getSheetAt(1);
+            Position p = null;
+            Cell cell = null;
+            Row row=null;
+            for (int i = 0; i < positions.size(); i++) {
+                p=positions.get(i);
+                row=sheet.createRow(i+1);
+
+                cell = row.createCell(0);
+                cell.setCellValue(p.getSecurityCode());
+
+                cell = row.createCell(1);
+                cell.setCellValue(p.getQuantity());
+
+            }
+            
+            out = new FileOutputStream(excelFile);
+            sheet.getWorkbook().write(out);
+            //wb.write(out);
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != wb) {
+                    wb.close();
+                }
+                if (null != in) {
+                    in.close();
+                }
+                if (null != out) {
+                    out.close();
+                }
+            } catch (Exception e) {
+                logger.warn(e.getMessage());
+            }
+        }
     }
 
 
@@ -239,10 +301,6 @@ public class ExcelServiceImpl implements ExcelService {
         Position p = new Position();
         Cell cell = null;
         int cellNum = 0;
-
-        cell = row.getCell(cellNum++);
-        String id = getCellFormatValue(cell);
-        p.setId(Integer.valueOf(id));
 
         cell = row.getCell(cellNum++);
         String securityCode = getCellFormatValue(cell);

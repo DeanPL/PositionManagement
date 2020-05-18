@@ -7,7 +7,6 @@ public class Position implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -6359263396065405008L;
-	private Integer id;
 	private String securityCode;
 	private Integer quantity;
 
@@ -25,13 +24,7 @@ public class Position implements Serializable{
 		this.quantity = quantity;
 	}
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getBuyOrSell() {
 		return buyOrSell;
@@ -40,14 +33,16 @@ public class Position implements Serializable{
 	public void setBuyOrSell(String buyOrSell) {
 		this.buyOrSell = buyOrSell;
 	}
-
 	@Override
 	public String toString() {
-		return "Position{" +
-				"id=" + id +
-				", securityCode='" + securityCode + '\'' +
-				", quantity=" + quantity +
-				", buyOrSell='" + buyOrSell + '\'' +
-				'}';
+		StringBuilder builder = new StringBuilder();
+		builder.append("Position [securityCode=");
+		builder.append(securityCode);
+		builder.append(", quantity=");
+		builder.append(quantity);
+		builder.append(", buyOrSell=");
+		builder.append(buyOrSell);
+		builder.append("]");
+		return builder.toString();
 	}
 }
