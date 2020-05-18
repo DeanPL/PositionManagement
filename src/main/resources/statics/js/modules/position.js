@@ -5,28 +5,16 @@ $(function () {
         colModel: [			
 			{ label: 'ID', name: 'id', width: 30, key: true },
 			{ label: 'securityCode', name: 'securityCode', sortable: false, width: 60 },
-			{ label: 'quantity', name: 'quantity', width: 100 },
-			{ label: '备注', name: 'remark', width: 80 }
+			{ label: 'quantity', name: 'quantity', width: 100 }
         ],
 		viewrecords: true,
-        height: 385,
-        rowNum: 10,
-		rowList : [10,30,50],
-        rownumbers: true, 
+        height: 560,
+        rownumbers: true,
         rownumWidth: 25, 
         autowidth:true,
         multiselect: true,
-        pager: "#jqGridPager",
         jsonReader : {
             root: "positions",
-            page: "page.currPage",
-            total: "page.totalPage",
-            records: "page.totalCount"
-        },
-        prmNames : {
-            page:"page", 
-            rows:"limit", 
-            order: "order"
         },
         gridComplete:function(){
         	//隐藏grid底部滚动条
@@ -38,82 +26,51 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		q:{
-            paramKey: null
-		},
 		showList: true,
 		title: null,
-		config: {}
+		position: {}
 	},
 	methods: {
 		query: function () {
 			vm.reload();
 		},
-		add: function(){
+		buy: function(){
 			vm.showList = false;
-			vm.title = "新增";
-			vm.config = {};
+			vm.title = "Buy";
+			vm.position = {};
+			vm.position.buyOrSell=vm.title
 		},
-		update: function () {
-			var id = getSelectedRow();
-			if(id == null){
-				return ;
-			}
-			
-			$.get(baseURL + "sys/config/info/"+id, function(r){
-                vm.showList = false;
-                vm.title = "修改";
-                vm.config = r.config;
-            });
-		},
-		del: function (event) {
-			var ids = getSelectedRows();
-			if(ids == null){
-				return ;
-			}
-			
-			confirm('确定要删除选中的记录？', function(){
-				$.ajax({
-					type: "POST",
-				    url: baseURL + "sys/config/delete",
-                    contentType: "application/json",
-				    data: JSON.stringify(ids),
-				    success: function(r){
-						if(r.code == 0){
-							alert('操作成功', function(index){
-								vm.reload();
-							});
-						}else{
-							alert(r.msg);
-						}
-					}
-				});
-			});
+		sell: function () {
+				vm.showList = false;
+    			vm.title = "Sell";
+    			vm.position = {};
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.config.id == null ? "sys/config/save" : "sys/config/update";
-			$.ajax({
-				type: "POST",
-			    url: baseURL + url,
-                contentType: "application/json",
-			    data: JSON.stringify(vm.config),
-			    success: function(r){
-			    	if(r.code === 0){
-						alert('操作成功', function(index){
-							vm.reload();
-						});
-					}else{
-						alert(r.msg);
-					}
-				}
-			});
-		},
+		    vm.position.buyOrSell=vm.title;
+		    console.log("XXX: "+vm.position.buyOrSell);
+        	var url = "PM/positions/operation";
+        	console.log(vm.position);
+        	$.ajax({
+        		type: "POST",
+        	    url: baseURL + url,
+                      contentType: "application/json",
+        	    data: JSON.stringify(vm.position),
+
+        	    success: function(r){
+        	    	if(r.code === 0){
+        				alert('SUCCESSFUL!', function(index){
+        					vm.reload();
+        				});
+        			}else{
+        				alert(r.msg);
+        			}
+        		}
+        	});
+        },
 		reload: function (event) {
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{ 
-                postData:{'paramKey': vm.q.paramKey},
-                page:page
+			$("#jqGrid").jqGrid('setGridParam',{
             }).trigger("reloadGrid");
 		}
 	}

@@ -47,23 +47,22 @@ public class PageController {
 	@RequestMapping("menu/nav")
 	public R nav() {
 		List<MenuItem> menuList =new ArrayList<MenuItem>();
+
 		MenuItem menu1=new MenuItem();
 		menu1.setName("Transactions");
 		menu1.setType(1);
-		menu1.setOpen(true);
 		menu1.setUrl("modules/transactions.html");
-		menu1.setIcon("aaaaaa");
-		
+		menu1.setIcon("fa fa-list");
+
+
 		MenuItem menu2=new MenuItem();
 		menu2.setName("Position");
 		menu2.setType(1);
-		menu2.setOpen(true);
 		menu2.setUrl("modules/position.html");
-		menu2.setIcon("bbbbbb");
-		
-		
-		menuList.add(menu2);
+		menu2.setIcon("fa fa-cog");
+
 		menuList.add(menu1);
+		menuList.add(menu2);
 		return R.ok().put("menuList", menuList);
 	}
 }

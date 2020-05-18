@@ -10,10 +10,11 @@ public class Transaction implements Serializable{
 	private Integer transactionID;
 	private Integer tradeID;
 	private Integer version;
-	private Integer securityCode;
+	private String securityCode;
     private Integer quantity;
-    private String IUC;
-    private String trade;
+
+    private String insert_update_cancel;
+    private String buy_sell;
 	public Integer getTransactionID() {
 		return transactionID;
 	}
@@ -32,10 +33,10 @@ public class Transaction implements Serializable{
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-	public Integer getSecurityCode() {
+	public String getSecurityCode() {
 		return securityCode;
 	}
-	public void setSecurityCode(Integer securityCode) {
+	public void setSecurityCode(String securityCode) {
 		this.securityCode = securityCode;
 	}
 	public Integer getQuantity() {
@@ -44,17 +45,33 @@ public class Transaction implements Serializable{
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public String getIUC() {
-		return IUC;
+
+	public String getInsert_update_cancel() {
+		return insert_update_cancel;
 	}
-	public void setIUC(String iUC) {
-		IUC = iUC;
+
+	public void setInsert_update_cancel(String insert_update_cancel) {
+		this.insert_update_cancel = insert_update_cancel;
 	}
-	public String getTrade() {
-		return trade;
+
+	public String getBuy_sell() {
+		return buy_sell;
 	}
-	public void setTrade(String trade) {
-		this.trade = trade;
+
+	public void setBuy_sell(String buy_sell) {
+		this.buy_sell = buy_sell;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"transactionID=" + transactionID +
+				", tradeID=" + tradeID +
+				", version=" + version +
+				", securityCode='" + securityCode + '\'' +
+				", quantity=" + quantity +
+				", insert_update_cancel='" + insert_update_cancel + '\'' +
+				", buy_sell='" + buy_sell + '\'' +
+				'}';
+	}
 }

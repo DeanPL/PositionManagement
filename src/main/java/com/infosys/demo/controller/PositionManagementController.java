@@ -3,6 +3,9 @@ package com.infosys.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.infosys.demo.service.PositionManagementService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,35 +17,29 @@ import com.infosys.demo.utils.R;
 @RequestMapping(value = "/")
 public class PositionManagementController {
 
-	@RequestMapping("transactions/list")
-	public R transactionsList() {
-		List<Transaction> transactions = new ArrayList<Transaction>();
+    @Autowired
+    private PositionManagementService pmservice;
 
-		for (int i = 0; i < 10; i++) {
 
-			Transaction t = new Transaction();
-			t.setTrade("A" + i);
-			t.setQuantity(i * 10);
-			t.setTransactionID(i);
-			t.setVersion(i);
-			transactions.add(t);
-		}
+    @RequestMapping("transactions/list")
+    public R transactionsList() {
+        List<Transaction> transactions = pmservice.queryTransactions();
+        return R.ok().put("transactions", transactions);
+    }
 
-		return R.ok().put("transactions", transactions);
-	}
+    @RequestMapping("positions/list")
+    public R positionsList() {
+        List<Position> positions = pmservice.queryPositions();
+        return R.ok().put("positions", positions);
+    }
 
-	@RequestMapping("positions/list")
-	public R positionsList() {
-		List<Position> positions = new ArrayList<Position>();
+    @RequestMapping("positions/operation")
+    public R operation(@RequestBody Position position) {
 
-		for (int i = 0; i < 10; i++) {
-			Position p = new Position();
-			p.setSecurityCode("INF" + i);
-			p.setQuantity(50 + i);
-			positions.add(p);
-		}
+        pmservice.operationPosition(position);
 
-		return R.ok().put("positions", positions);
-	}
+
+        return R.ok();
+    }
 
 }

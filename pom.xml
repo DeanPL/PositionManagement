@@ -60,7 +60,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.15</version>
+		</dependency>
+        <!--
 		<dependency>
 			<groupId>jdk.tools</groupId>
 			<artifactId>jdk.tools</artifactId>
@@ -68,12 +83,13 @@
 			<scope>system</scope>
 			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+        -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
