@@ -45,7 +45,7 @@ var vm = new Vue({
 		main : "main.html",
 		password : '',
 		newPassword : '',
-		navTitle : "控制台"
+		navTitle : "Welcome"
 	},
 	methods : {
 		getMenuList : function(event) {
