@@ -166,7 +166,7 @@ public class PositionManagementServiceImpl implements PositionManagementService 
 			@Override
 			public int compare(Transaction o1, Transaction o2) {
 
-				return o1.getVersion().compareTo(o2.getVersion());
+				return o2.getVersion().compareTo(o1.getVersion());
 			}
 		});
 
