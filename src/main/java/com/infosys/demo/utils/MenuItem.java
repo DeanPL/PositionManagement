@@ -5,10 +5,6 @@ package com.infosys.demo.utils;
 import java.io.Serializable;
 import java.util.List;
 
-/** 
-*
-*author： Dean Peng email：dean.peng@infosys.com Date:May 16, 2020 4:01:02 PM
-*/
 public class MenuItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 

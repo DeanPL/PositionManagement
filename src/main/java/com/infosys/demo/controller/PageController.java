@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.infosys.demo.utils.MenuItem;
 import com.infosys.demo.utils.R;
 
-/**
-/** 
- *系统页面视图
- *author： Dean Peng email：dean.peng@infosys.com Date:May 16, 2020 5:01:02 PM
- */
 @Controller
 public class PageController {
 
