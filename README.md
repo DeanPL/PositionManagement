@@ -11,5 +11,5 @@ step3 import project into eclipse or idea
 
 step4 start application from main class com.infosys.demo. App.java 
 
-step4 browser open http://localhost:8080/PM/index.html 
+step5 browser open http://localhost:8080/PM/index.html 
 
