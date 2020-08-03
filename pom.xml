@@ -105,8 +105,7 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
     </plugins>
-</build>
-		<resources>
+   		<resources>
 			<resource>
 				<directory>${basedir}/src/main/java</directory>
 				<includes>
@@ -117,6 +116,8 @@
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
-		</resources>
+		</resources>	
+</build>
+
 </project>
 
