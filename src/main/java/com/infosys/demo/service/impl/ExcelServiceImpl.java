@@ -161,7 +161,8 @@ public class ExcelServiceImpl implements ExcelService {
         try {
             //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
             File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
-            in = new FileInputStream(excelFile);
+            //in = new FileInputStream(excelFile);
+            in=this.getClass().getResourceAsStream("/excel/PositionMGNT.xlsx");
             wb = new XSSFWorkbook(in);
             Sheet sheet = wb.getSheetAt(0);
             Transaction t = null;
@@ -193,6 +194,7 @@ public class ExcelServiceImpl implements ExcelService {
 
                 cell.setCellValue(t.getBuy_sell());
             }
+
             out = new FileOutputStream(excelFile);
             sheet.getWorkbook().write(out);
             //wb.write(out);
@@ -226,7 +228,8 @@ public class ExcelServiceImpl implements ExcelService {
         try {
             //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
             File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
-            in = new FileInputStream(excelFile);
+            //in = new FileInputStream(excelFile);
+            in=this.getClass().getResourceAsStream("/excel/PositionMGNT.xlsx");
             wb = new XSSFWorkbook(in);
             Sheet sheet = wb.getSheetAt(1);
             Position p = null;
