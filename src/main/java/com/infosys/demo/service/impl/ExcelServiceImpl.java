@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import com.infosys.demo.entity.Position;
 import com.infosys.demo.entity.Transaction;
 import com.infosys.demo.service.ExcelService;
+import org.springframework.util.ResourceUtils;
 
 @Service("excelService")
 public class ExcelServiceImpl implements ExcelService {
@@ -38,8 +39,8 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
-            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
+            File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
             in = new FileInputStream(excelFile);
             //读取excel模板
             wb = new XSSFWorkbook(in);
@@ -96,8 +97,8 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            //File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
-            File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
+            File excelFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
             
             in = new FileInputStream(excelFile);
             //读取excel模板
