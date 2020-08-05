@@ -39,9 +39,14 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            File excelFile = ResourceUtils.getFile(ResourceUtils.WAR_URL_PREFIX + "excel/PositionMGNT.xlsx");
+
+            in=this.getClass().getResourceAsStream("/excel/PositionMGNT.xlsx");
+
+
+
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.WAR_URL_PREFIX + "excel/PositionMGNT.xlsx");
             //File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
-            in = new FileInputStream(excelFile);
+            //in = new FileInputStream(excelFile);
             //读取excel模板
             wb = new XSSFWorkbook(in);
             Sheet sheet = wb.getSheetAt(0);
@@ -97,10 +102,11 @@ public class ExcelServiceImpl implements ExcelService {
         Workbook wb = null;
         InputStream in = null;
         try {
-            File excelFile = ResourceUtils.getFile(ResourceUtils.WAR_URL_PREFIX + "excel/PositionMGNT.xlsx");
+            //File excelFile = ResourceUtils.getFile(ResourceUtils.WAR_URL_PREFIX + "excel/PositionMGNT.xlsx");
             //File excelFile = new File(this.getClass().getResource("/excel/PositionMGNT.xlsx").getFile());
             
-            in = new FileInputStream(excelFile);
+            //in = new FileInputStream(excelFile);
+            in=this.getClass().getResourceAsStream("/excel/PositionMGNT.xlsx");
             //读取excel模板
             wb = new XSSFWorkbook(in);
             Sheet sheet = wb.getSheetAt(1);
